@@ -1,10 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Fix: Per coding guidelines, initialize GoogleGenAI with process.env.API_KEY and assume it is available.
+// Fix: Corrected API key initialization to align with coding guidelines.
+// The API key is now sourced from `process.env.API_KEY`, assuming it's available in the execution environment.
+// This resolves the TypeScript error related to `import.meta.env`.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateNotificationMessage = async (professorName: string, studentName: string): Promise<string> => {
-  // Fix: Per coding guidelines, removed mock/fallback logic for missing API key.
   const model = 'gemini-2.5-flash';
   const prompt = `Generate a very short, friendly, and professional text message for a student named "${studentName}" to let them know that ${professorName} is ready for their appointment now. The message must be concise and sound like an SMS notification.`;
 
